@@ -1,0 +1,21 @@
+#System files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+/.settings
+/.project
+/.buildpath
+/.idea
+
+# Config files
+/config
+
+#Runtime
+app/Runtime
+runtime/Runtime
+library/Runtime/CommandStack/*
+!library/Runtime/CommandStack/.runtime
+*/*/File
+
+/vendor
