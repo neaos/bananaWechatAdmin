@@ -85,7 +85,7 @@ class AdminController extends BaseController
      */
     public function logout()
     {
-        $this->sessionInfo->delSessionData($this->sessionId);
+        $this->sessionInfo->delSessionData();
         return [
             'code' => ResCodeObject::$successHttp,
             'data' => [],

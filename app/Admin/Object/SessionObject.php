@@ -87,10 +87,9 @@ class SessionObject
     }
 
     /**
-     * @param array $data
      * @return bool
      */
-    public function delSessionData(array $data)
+    public function delSessionData()
     {
         $_SESSION['bwa']['admin'] = [];
         return true;

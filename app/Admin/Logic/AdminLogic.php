@@ -65,11 +65,6 @@ class AdminLogic
         }
     }
 
-    public function setSessionInfo()
-    {
-
-    }
-
     /**
      * @param string $sessionId
      * @param int $uid
@@ -97,7 +92,7 @@ class AdminLogic
     /**
      * @param int $roleId
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function getRolePermission(int $roleId): array
     {
@@ -146,7 +141,7 @@ class AdminLogic
      * @param int $id
      * @param array $requestData
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function changePwd(int $id, array $requestData): array
     {
@@ -202,27 +197,27 @@ class AdminLogic
         // 查询所有的平台信息
         $platformList = (new PlatformModel())->builder->where(['status' => 1])->get()->toArray();
         foreach ($platformList as $platform) {
-            $treeNode = ['tree_node_id' => ++$treeNodeId, 'id' => $platform['id'], 'label' => $platform['name'], 'type' => 'platform'];
+            $treeNode = ['tree_node_id' => ++$treeNodeId, 'id' => $platform->id, 'label' => $platform->name, 'type' => 'platform'];
             // 判断当前用户有没有平台权限
-            if (in_array($platform['id'], explode(',', $admin['platform_id_list']))) {
+            if (in_array($platform['id'], explode(',', $admin->platform_id_list))) {
                 $treeSelectKey[] = $treeNodeId;
             }
 
             // 查询平台对应的游戏类型
-            $gameTypeList = (new GameTypeModel())->builder->where(['status' => 1, 'platform_id' => $platform['id']])->get();
+            $gameTypeList = (new GameTypeModel())->builder->where(['status' => 1, 'platform_id' => $platform->id])->get();
             foreach ($gameTypeList as $gameType) {
-                $lastTreeNode = ['tree_node_id' => ++$treeNodeId, 'id' => $gameType['id'], 'label' => $gameType['name'], 'type' => 'gameType'];
+                $lastTreeNode = ['tree_node_id' => ++$treeNodeId, 'id' => $gameType->id, 'label' => $gameType->name, 'type' => 'gameType'];
                 // 判断当前用户有没有游戏类型权限
-                if (in_array($gameType['id'], explode(',', $admin['game_type_id_list']))) {
+                if (in_array($gameType->id, explode(',', $admin->game_type_id_list))) {
                     $treeSelectKey[] = $treeNodeId;
                 }
 
                 // 查询游戏类型对应的游戏
-                $gameList = (new GameModel())->builder->where(['status' => 1, 'platform_id' => $platform['id'], 'game_type_id' => $gameType['id']])->get();
+                $gameList = (new GameModel())->builder->where(['status' => 1, 'platform_id' => $platform->id, 'game_type_id' => $gameType->id])->get();
                 foreach ($gameList as $game) {
-                    $lastTreeNode['children'][] = ['tree_node_id' => ++$treeNodeId, 'id' => $game['id'], 'label' => $game['name'], 'type' => 'game'];
+                    $lastTreeNode['children'][] = ['tree_node_id' => ++$treeNodeId, 'id' => $game->id, 'label' => $game->name, 'type' => 'game'];
                     // 判断当前用户有没有游戏权限
-                    if (in_array($game['id'], explode(',', $admin['game_id_list']))) {
+                    if (in_array($game['id'], explode(',', $admin->game_id_list))) {
                         $treeSelectKey[] = $treeNodeId;
                     }
                 }
