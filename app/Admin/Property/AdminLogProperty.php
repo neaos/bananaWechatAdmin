@@ -5,13 +5,14 @@
  * Date: 2019/11/15
  * Time: 20:06
  */
+
 namespace App\Admin\Property;
 
 use Library\Virtual\Property\AbstractProperty;
 
 /**
  * Class AdminProperty
- * @package App\Api\Property
+ * @package App\Admin\Property
  */
 class AdminLogProperty extends AbstractProperty
 {
@@ -34,12 +35,23 @@ class AdminLogProperty extends AbstractProperty
     public $update_time;
 
     /**
+     * AdminLogProperty constructor.
+     */
+    public function __construct()
+    {
+        $this->create_time = time();
+        $this->update_time = time();
+    }
+
+    /**
      * 设置属性
      * 可以默认写法
+     *
      * public function setProperty(array $params)
      * {
      *    return $this->__setProperty($params);
      * }
+     *
      * @param array $params
      * @return $this
      * @throws \Exception

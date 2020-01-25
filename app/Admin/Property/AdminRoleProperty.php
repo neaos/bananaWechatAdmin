@@ -6,7 +6,7 @@ use Library\Virtual\Property\AbstractProperty;
 
 /**
  * Class AdminRoleProperty
- * @package App\Api\Property
+ * @package App\Admin\Property
  */
 class AdminRoleProperty extends AbstractProperty
 {
@@ -16,19 +16,30 @@ class AdminRoleProperty extends AbstractProperty
 
     public $desc;
 
-    public $state;
+    public $state = 1;
 
     public $create_time;
 
     public $update_time;
 
     /**
+     * AdminRoleProperty constructor.
+     */
+    public function __construct()
+    {
+        $this->update_time = time();
+        $this->create_time = time();
+    }
+
+    /**
      * 设置属性
      * 可以默认写法
+     *
      * public function setProperty(array $params)
      * {
      *    return $this->__setProperty($params);
      * }
+     *
      * @param array $params
      * @return $this
      * @throws \Exception

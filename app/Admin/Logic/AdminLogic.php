@@ -56,10 +56,11 @@ class AdminLogic
     public function login(string $username, string $password): array
     {
         $adminModel = new AdminModel();
-        $admin = $adminModel->login($username, $password);
-        if ($admin) {
-            $admin->permission = $this->getRolePermission((int)$admin->role_id);
-            return $admin->toArray();
+        $adminInfo = $adminModel->login($username, $password);
+        if ($adminInfo) {
+            $admin = $adminInfo->toArray();
+            $admin['permission'] = $this->getRolePermission((int)$adminInfo->role_id);
+            return $admin;
         } else {
             return [];
         }

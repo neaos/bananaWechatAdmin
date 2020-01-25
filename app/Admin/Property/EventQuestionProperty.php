@@ -1,27 +1,41 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2019/11/15
+ * Time: 20:06
+ */
 
 namespace App\Admin\Property;
 
 use Library\Virtual\Property\AbstractProperty;
 
 /**
- * Class AdminRolePermissionProperty
- * @package App\Api\Property
+ * Class EventQuestionProperty
+ * @package App\Admin\Property
  */
-class AdminRolePermissionProperty extends AbstractProperty
+class EventQuestionProperty extends AbstractProperty
 {
     public $id = 0;
 
-    public $role_id;
+    public $app_id;
 
-    public $permission_list;
+    public $event_key;
 
-    public $create_time;
+    public $question;
+
+    public $answer;
+
+    public $life_time = 30;
+
+    public $status = 1;
 
     public $update_time;
 
+    public $create_time;
+
     /**
-     * AdminRolePermissionProperty constructor.
+     * EventQuestionProperty constructor.
      */
     public function __construct()
     {

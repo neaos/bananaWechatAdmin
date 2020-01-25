@@ -1,27 +1,39 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2019/11/15
+ * Time: 20:06
+ */
 
 namespace App\Admin\Property;
 
 use Library\Virtual\Property\AbstractProperty;
 
 /**
- * Class AdminRolePermissionProperty
- * @package App\Api\Property
+ * Class AutoReplyProperty
+ * @package App\Admin\Property
  */
-class AdminRolePermissionProperty extends AbstractProperty
+class ReplyEventProperty extends AbstractProperty
 {
     public $id = 0;
 
-    public $role_id;
+    public $app_id;
 
-    public $permission_list;
+    public $keyword_list;
 
-    public $create_time;
+    public $event_key;
+
+    public $weight = 0;
+
+    public $status = 1;
 
     public $update_time;
 
+    public $create_time;
+
     /**
-     * AdminRolePermissionProperty constructor.
+     * ReplyEventProperty constructor.
      */
     public function __construct()
     {

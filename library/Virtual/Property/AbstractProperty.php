@@ -14,10 +14,12 @@ abstract class AbstractProperty
     /**
      * 设置属性
      * 可以默认写法
+     *
      * public function setProperty(array $params)
      * {
      *    return $this->__setProperty($params);
      * }
+     *
      * @param array $params
      * @return $this
      * @throws Exception
