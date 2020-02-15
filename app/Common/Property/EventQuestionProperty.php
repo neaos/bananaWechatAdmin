@@ -6,35 +6,27 @@
  * Time: 20:06
  */
 
-namespace App\Admin\Property;
+namespace App\Common\Property;
 
 use Library\Virtual\Property\AbstractProperty;
 
 /**
- * Class ReplyArbitrarilyProperty
- * @package App\Admin\Property
+ * Class EventQuestionProperty
+ * @package App\Common\Property
  */
-class ReplyArbitrarilyProperty extends AbstractProperty
+class EventQuestionProperty extends AbstractProperty
 {
     public $id = 0;
 
     public $app_id;
 
-    public $pid;
-
-    public $name;
-
-    public $type;
-
-    public $view_url;
-
-    public $mp_app_id;
-
-    public $mp_page_path;
-
     public $event_key;
 
-    public $weight = 0;
+    public $question;
+
+    public $answer;
+
+    public $life_time = 30;
 
     public $status = 1;
 
@@ -43,7 +35,7 @@ class ReplyArbitrarilyProperty extends AbstractProperty
     public $create_time;
 
     /**
-     * ReplyArbitrarilyProperty constructor.
+     * EventQuestionProperty constructor.
      */
     public function __construct()
     {

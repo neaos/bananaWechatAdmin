@@ -6,27 +6,35 @@
  * Time: 20:06
  */
 
-namespace App\Admin\Property;
+namespace App\Common\Property;
 
 use Library\Virtual\Property\AbstractProperty;
 
 /**
- * Class EventQuestionProperty
- * @package App\Admin\Property
+ * Class ReplyFollowProperty
+ * @package App\Common\Property
  */
-class EventQuestionProperty extends AbstractProperty
+class ReplyFollowProperty extends AbstractProperty
 {
     public $id = 0;
 
     public $app_id;
 
+    public $pid;
+
+    public $name;
+
+    public $type;
+
+    public $view_url;
+
+    public $mp_app_id;
+
+    public $mp_page_path;
+
     public $event_key;
 
-    public $question;
-
-    public $answer;
-
-    public $life_time = 30;
+    public $weight = 0;
 
     public $status = 1;
 
@@ -35,7 +43,7 @@ class EventQuestionProperty extends AbstractProperty
     public $create_time;
 
     /**
-     * EventQuestionProperty constructor.
+     * ReplyFollowProperty constructor.
      */
     public function __construct()
     {

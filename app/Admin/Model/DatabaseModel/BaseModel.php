@@ -11,7 +11,7 @@ namespace App\Admin\Model\DatabaseModel;
 use Illuminate\Database\Query\Builder;
 use Library\Virtual\Model\DatabaseModel\AbstractMySqlModel;
 
-class BaseModel extends AbstractMySqlModel
+abstract class BaseModel extends AbstractMySqlModel
 {
     /**
      * @var string $platformIdList
@@ -54,16 +54,5 @@ class BaseModel extends AbstractMySqlModel
     public function setSessionGameIdList(string $gameIdList)
     {
         $this->gameIdList = $gameIdList;
-    }
-
-    /**
-     * 需要子类重写此方法
-     * @param array $where 查询条件
-     * @param array $orderBy 排序条件
-     * @return Builder 查询构造器对象
-     */
-    protected function getCondition($where, $orderBy = []): Builder
-    {
-        return $this->builder;
     }
 }

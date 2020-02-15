@@ -6,13 +6,13 @@
  * Time: 20:06
  */
 
-namespace App\Admin\Property;
+namespace App\Common\Property;
 
 use Library\Virtual\Property\AbstractProperty;
 
 /**
  * Class EventBuildProperty
- * @package App\Admin\Property
+ * @package App\Common\Property
  */
 class EventBuildProperty extends AbstractProperty
 {

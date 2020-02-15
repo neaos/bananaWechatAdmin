@@ -6,15 +6,15 @@
  * Time: 20:06
  */
 
-namespace App\Admin\Property;
+namespace App\Common\Property;
 
 use Library\Virtual\Property\AbstractProperty;
 
 /**
- * Class EventGiftProperty
- * @package App\Admin\Property
+ * Class EventMessageProperty
+ * @package App\Common\Property
  */
-class EventGiftProperty extends AbstractProperty
+class EventMessageProperty extends AbstractProperty
 {
     public $id = 0;
 
@@ -43,7 +43,7 @@ class EventGiftProperty extends AbstractProperty
     public $create_time;
 
     /**
-     * MenuProperty constructor.
+     * EventMessageProperty constructor.
      */
     public function __construct()
     {

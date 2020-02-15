@@ -6,31 +6,21 @@
  * Time: 20:06
  */
 
-namespace App\Admin\Property;
+namespace App\Common\Property;
 
 use Library\Virtual\Property\AbstractProperty;
 
 /**
- * Class MenuProperty
- * @package App\Admin\Property
+ * Class AutoReplyProperty
+ * @package App\Common\Property
  */
-class MenuProperty extends AbstractProperty
+class ReplyEventProperty extends AbstractProperty
 {
     public $id = 0;
 
     public $app_id;
 
-    public $pid;
-
-    public $name;
-
-    public $type;
-
-    public $view_url;
-
-    public $mp_app_id;
-
-    public $mp_page_path;
+    public $keyword_list;
 
     public $event_key;
 
@@ -43,7 +33,7 @@ class MenuProperty extends AbstractProperty
     public $create_time;
 
     /**
-     * MenuProperty constructor.
+     * ReplyEventProperty constructor.
      */
     public function __construct()
     {

@@ -6,15 +6,15 @@
  * Time: 20:06
  */
 
-namespace App\Admin\Property;
+namespace App\Common\Property;
 
 use Library\Virtual\Property\AbstractProperty;
 
 /**
- * Class ReplyFollowProperty
- * @package App\Admin\Property
+ * Class ReplyArbitrarilyProperty
+ * @package App\Common\Property
  */
-class ReplyFollowProperty extends AbstractProperty
+class ReplyArbitrarilyProperty extends AbstractProperty
 {
     public $id = 0;
 
@@ -43,7 +43,7 @@ class ReplyFollowProperty extends AbstractProperty
     public $create_time;
 
     /**
-     * ReplyFollowProperty constructor.
+     * ReplyArbitrarilyProperty constructor.
      */
     public function __construct()
     {
