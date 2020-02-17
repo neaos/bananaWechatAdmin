@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 本地虚拟机
+ Source Server         : 虚拟机zzh
  Source Server Type    : MySQL
- Source Server Version : 50728
- Source Host           : 192.168.0.103:3306
- Source Schema         : banana_wechat_admin
+ Source Server Version : 50729
+ Source Host           : 192.168.5.31:3306
+ Source Schema         : bananaWechatAdmin
 
  Target Server Type    : MySQL
- Target Server Version : 50728
+ Target Server Version : 50729
  File Encoding         : 65001
 
- Date: 17/02/2020 11:53:45
+ Date: 17/02/2020 19:35:00
 */
 
 SET NAMES utf8mb4;
@@ -99,6 +99,21 @@ CREATE TABLE `bwa_admin_role_permission`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Table structure for bwa_auto_reply
+-- ----------------------------
+DROP TABLE IF EXISTS `bwa_auto_reply`;
+CREATE TABLE `bwa_auto_reply`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '唯一主键id',
+  `app_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '公众号的app_id',
+  `keyword_list` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '匹配出的关键字列表(关键字之间用逗号分隔)',
+  `event_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '匹配出后执行的event_key',
+  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '是否可用:1可用；-1不可用',
+  `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Table structure for bwa_event_build
 -- ----------------------------
 DROP TABLE IF EXISTS `bwa_event_build`;
@@ -106,11 +121,11 @@ CREATE TABLE `bwa_event_build`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '唯一主键id',
   `app_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '公众号app_id',
   `event_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '事件标识',
-  `floor_type` int(10) NOT NULL COMMENT '盖楼获得奖品的楼层规则:1取模类型；2指定楼层类型',
-  `floor_num` int(10) NOT NULL COMMENT '盖楼获得奖品的楼层的取模=0的楼层（在取模类型可用）',
-  `floor_num_list` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '30' COMMENT '盖楼获得奖品的楼层列表（在指定楼层类型可用）',
-  `life_time` int(10) NOT NULL COMMENT '改一次楼能延续的时间',
-  `gift_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0' COMMENT '获取奖品的奖品key',
+  `floor_type` int(10) UNSIGNED NOT NULL DEFAULT 1 COMMENT '盖楼获得奖品的楼层规则:1取模类型；2指定楼层类型',
+  `floor_num` int(10) UNSIGNED NOT NULL DEFAULT 1 COMMENT '盖楼获得奖品的楼层的取模=0的楼层（在取模类型可用）',
+  `floor_num_list` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '盖楼获得奖品的楼层列表（在指定楼层类型可用）',
+  `life_time` int(10) UNSIGNED NOT NULL DEFAULT 180 COMMENT '盖一次楼能延续的时间',
+  `gift_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '获取奖品的奖品key',
   `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '是否可用:1可用；-1不可用',
   `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
   `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间',
@@ -139,8 +154,7 @@ DROP TABLE IF EXISTS `bwa_event_message`;
 CREATE TABLE `bwa_event_message`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '唯一主键id',
   `app_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '公众号app_id',
-  `event_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '事件标识',
-  `reply_type` int(10) UNSIGNED NOT NULL DEFAULT 1 COMMENT '回复类型(1文本；2图片；3语音；4视频；5图文)',
+  `event_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '事件标识',
   `reply_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '回复内容的id',
   `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '是否可用:1可用；-1不可用',
   `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
@@ -159,6 +173,7 @@ CREATE TABLE `bwa_event_question`  (
   `question` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '问题内容',
   `answer` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '问题答案',
   `life_time` int(10) UNSIGNED NOT NULL DEFAULT 30 COMMENT '回答限时(秒)，默认30秒',
+  `gift_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '回答问题正确获得的礼包码',
   `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '是否可用:1可用；-1不可用',
   `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
   `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间',
@@ -210,29 +225,16 @@ CREATE TABLE `bwa_official_account`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for bwa_reply_arbitrarily
--- ----------------------------
-DROP TABLE IF EXISTS `bwa_reply_arbitrarily`;
-CREATE TABLE `bwa_reply_arbitrarily`  (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '唯一主键id',
-  `app_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '公众号app_id',
-  `reply_type` int(10) UNSIGNED NOT NULL DEFAULT 1 COMMENT '回复类型(1文本；2图片；3语音；4视频；5图文)',
-  `reply_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '回复内容的id',
-  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '是否可用:1可用；-1不可用',
-  `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
-  `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
 -- Table structure for bwa_reply_event
 -- ----------------------------
 DROP TABLE IF EXISTS `bwa_reply_event`;
 CREATE TABLE `bwa_reply_event`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '唯一主键id',
   `app_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '公众号的app_id',
-  `keyword_list` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '匹配出的关键字列表(关键字之间用逗号分隔)',
-  `event_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '匹配出后执行的event_key',
+  `reply_type` enum('text','image','voice','video','news') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'text' COMMENT '回复类型',
+  `reply_text` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '当reply_type是text时的内容',
+  `reply_media_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '当reply_type是\'image\',\'voice\',\'video\'时的媒体id(微信公众号里面的id)',
+  `reply_news_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '当reply_type是\'news\'时的文章id',
   `weight` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '当前公众号的自动回复的权重',
   `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '是否可用:1可用；-1不可用',
   `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
@@ -241,13 +243,44 @@ CREATE TABLE `bwa_reply_event`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for bwa_reply_follow
+-- Table structure for bwa_reply_sys_event
 -- ----------------------------
-DROP TABLE IF EXISTS `bwa_reply_follow`;
-CREATE TABLE `bwa_reply_follow`  (
+DROP TABLE IF EXISTS `bwa_reply_sys_event`;
+CREATE TABLE `bwa_reply_sys_event`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '唯一主键id',
+  `app_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '公众号的app_id',
+  `reply_type` enum('text','image','voice','video','news') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'text' COMMENT '回复类型',
+  `reply_text` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '当reply_type是text时的内容',
+  `reply_media_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '当reply_type是\'image\',\'voice\',\'video\'时的媒体id(微信公众号里面的id)',
+  `reply_news_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '当reply_type是\'news\'时的文章id',
+  `weight` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '当前公众号的自动回复的权重',
+  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '是否可用:1可用；-1不可用',
+  `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for bwa_sys_event_arbitrarily
+-- ----------------------------
+DROP TABLE IF EXISTS `bwa_sys_event_arbitrarily`;
+CREATE TABLE `bwa_sys_event_arbitrarily`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '唯一主键id',
   `app_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '公众号app_id',
-  `reply_type` int(10) UNSIGNED NOT NULL DEFAULT 1 COMMENT '回复类型(1文本；2图片；3语音；4视频；5图文)',
+  `reply_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '回复内容的id',
+  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '是否可用:1可用；-1不可用',
+  `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for bwa_sys_event_follow
+-- ----------------------------
+DROP TABLE IF EXISTS `bwa_sys_event_follow`;
+CREATE TABLE `bwa_sys_event_follow`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '唯一主键id',
+  `app_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '公众号app_id',
   `reply_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '回复内容的id',
   `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '是否可用:1可用；-1不可用',
   `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',

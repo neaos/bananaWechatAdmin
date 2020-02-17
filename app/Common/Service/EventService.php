@@ -1,4 +1,5 @@
 <?php
+namespace App\Common\Service;
 /**
  * Created by PhpStorm.
  * User: Administrator
