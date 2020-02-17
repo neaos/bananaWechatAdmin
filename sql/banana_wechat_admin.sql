@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 25/01/2020 22:16:53
+ Date: 17/02/2020 11:53:45
 */
 
 SET NAMES utf8mb4;
@@ -35,7 +35,7 @@ CREATE TABLE `bwa_admin`  (
   `create_time` int(11) NOT NULL DEFAULT 0 COMMENT '创建时间',
   `update_time` int(11) NOT NULL DEFAULT 0 COMMENT '注册时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for bwa_admin_log
@@ -54,7 +54,7 @@ CREATE TABLE `bwa_admin_log`  (
   INDEX `normal_uid`(`uid`) USING BTREE COMMENT '用户标识二级索引',
   INDEX `normal_username`(`username`) USING BTREE COMMENT '用户名二级索引',
   INDEX `normal_op_type`(`type`) USING BTREE COMMENT '操作类型二级索引'
-) ENGINE = InnoDB AUTO_INCREMENT = 366 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for bwa_admin_permission
@@ -67,7 +67,7 @@ CREATE TABLE `bwa_admin_permission`  (
   `state` tinyint(1) NOT NULL DEFAULT 1 COMMENT '该记录是否有效1：有效、0：无效',
   `pid` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '父级权限ID',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for bwa_admin_role
@@ -82,7 +82,7 @@ CREATE TABLE `bwa_admin_role`  (
   `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间',
   `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for bwa_admin_role_permission
@@ -96,7 +96,7 @@ CREATE TABLE `bwa_admin_role_permission`  (
   `update_time` int(10) NOT NULL DEFAULT 0 COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `role_id`(`role_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for bwa_event_build
@@ -192,6 +192,7 @@ CREATE TABLE `bwa_menu`  (
 DROP TABLE IF EXISTS `bwa_official_account`;
 CREATE TABLE `bwa_official_account`  (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '唯一主键id',
+  `key` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '公众号的简称',
   `app_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '公众号appid',
   `app_secret` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '公众号的appsecret',
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '推荐公众号名称',
@@ -206,7 +207,7 @@ CREATE TABLE `bwa_official_account`  (
   `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '可用情况：1可用；-1不可用',
   `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for bwa_reply_arbitrarily
