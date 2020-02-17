@@ -11,8 +11,7 @@ namespace App\Admin\Controller;
 class EventController extends BaseController
 {
     // event_build
-
-    public function getEventBuildList()
+    public function getEventBuild()
     {
 
     }
@@ -33,8 +32,7 @@ class EventController extends BaseController
     }
 
     // event_gift
-
-    public function getEventGiftList()
+    public function getEventGift()
     {
 
     }
@@ -54,9 +52,8 @@ class EventController extends BaseController
 
     }
 
-    // event_keyword
-
-    public function getEventMessageList()
+    // event_message
+    public function getEventMessage()
     {
 
     }
@@ -77,8 +74,7 @@ class EventController extends BaseController
     }
 
     // event_question
-
-    public function getEventQuestionList()
+    public function getEventQuestion()
     {
 
     }

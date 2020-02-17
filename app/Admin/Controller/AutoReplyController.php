@@ -8,7 +8,7 @@
 
 namespace App\Admin\Controller;
 
-class ReplyController extends BaseController
+class AutoReplyController extends BaseController
 {
 
 }

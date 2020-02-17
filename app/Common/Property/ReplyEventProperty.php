@@ -11,7 +11,7 @@ namespace App\Common\Property;
 use Library\Virtual\Property\AbstractProperty;
 
 /**
- * Class AutoReplyProperty
+ * Class ReplyEventProperty
  * @package App\Common\Property
  */
 class ReplyEventProperty extends AbstractProperty
@@ -20,9 +20,13 @@ class ReplyEventProperty extends AbstractProperty
 
     public $app_id;
 
-    public $keyword_list;
+    public $reply_type = 'text';
 
-    public $event_key;
+    public $reply_text = '';
+
+    public $reply_media_id = '';
+
+    public $reply_news_id = 0;
 
     public $weight = 0;
 

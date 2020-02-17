@@ -22,11 +22,13 @@ class EventQuestionProperty extends AbstractProperty
 
     public $event_key;
 
-    public $question;
+    public $question = 0;
 
-    public $answer;
+    public $answer = 0;
 
-    public $life_time = 30;
+    public $life_time = 0;
+
+    public $gift_key = 0;
 
     public $status = 1;
 

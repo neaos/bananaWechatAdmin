@@ -10,7 +10,7 @@ namespace App\Admin\Controller;
 
 class OfficialAccountController extends BaseController
 {
-    public function getOfficialAccountList()
+    public function getOfficialAccount()
     {
 
     }

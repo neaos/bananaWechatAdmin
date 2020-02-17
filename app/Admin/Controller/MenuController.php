@@ -10,7 +10,7 @@ namespace App\Admin\Controller;
 
 class MenuController extends BaseController
 {
-    public function getMenuList()
+    public function getMenu()
     {
 
     }

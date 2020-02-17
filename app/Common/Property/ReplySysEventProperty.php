@@ -11,28 +11,22 @@ namespace App\Common\Property;
 use Library\Virtual\Property\AbstractProperty;
 
 /**
- * Class ReplyFollowProperty
+ * Class ReplySysEventProperty
  * @package App\Common\Property
  */
-class ReplyFollowProperty extends AbstractProperty
+class ReplySysEventProperty extends AbstractProperty
 {
     public $id = 0;
 
     public $app_id;
 
-    public $pid;
+    public $reply_type = 'text';
 
-    public $name;
+    public $reply_text = '';
 
-    public $type;
+    public $reply_media_id = '';
 
-    public $view_url;
-
-    public $mp_app_id;
-
-    public $mp_page_path;
-
-    public $event_key;
+    public $reply_news_id = 0;
 
     public $weight = 0;
 
@@ -43,7 +37,7 @@ class ReplyFollowProperty extends AbstractProperty
     public $create_time;
 
     /**
-     * ReplyFollowProperty constructor.
+     * ReplySysEventProperty constructor.
      */
     public function __construct()
     {

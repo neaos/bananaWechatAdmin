@@ -20,21 +20,9 @@ class EventGiftProperty extends AbstractProperty
 
     public $app_id;
 
-    public $pid;
-
-    public $name;
-
-    public $type;
-
-    public $view_url;
-
-    public $mp_app_id;
-
-    public $mp_page_path;
-
     public $event_key;
 
-    public $weight = 0;
+    public $gift_key;
 
     public $status = 1;
 
