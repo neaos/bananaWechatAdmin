@@ -50,6 +50,8 @@ class WeChatApiService
 
     /**
      * 响应微信发送的信息
+     * @param $fromUserName
+     * @param $toUserName
      * @param  array|string $contentData 回复信息，文本信息为string类型
      * @param  string $type 消息类型必传WeChatResponseObject的成员变量
      */
@@ -101,7 +103,7 @@ class WeChatApiService
      * @param $appid
      * @return array|Collection
      */
-    public function getAutReplyListByAppId($appid)
+    public function getAutoReplyListByAppId($appid)
     {
         $cacheModel = new AutoReplyCacheModel();
         $list = $cacheModel->getAutReplyListByAppId($appid);

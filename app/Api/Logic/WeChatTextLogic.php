@@ -8,13 +8,15 @@
 
 namespace App\Api\Logic;
 
+use App\Api\Model\CacheModel\TextAnswerModel;
 use App\Api\Service\WeChatApiService;
+use App\Api\Service\WeChatGiftService;
 
 class WeChatTextLogic
 {
     public function textRoute($data)
     {
-        $autoReplyList = WeChatApiService::instance()->getAutReplyListByAppId($data['appid']);
+        $autoReplyList = WeChatApiService::instance()->getAutoReplyListByAppId($data['appid']);
         foreach ($autoReplyList as $key => $value) {
             $keywordList = explode(',', $value->keyword_list);
             if (in_array($data['Content'], $keywordList)) {
@@ -43,6 +45,19 @@ class WeChatTextLogic
     private function build($data)
     {
 
+    }
+
+    private function answer($data)
+    {
+        $cacheModel = new TextAnswerModel();
+        $answerData = $cacheModel->getUserAnswerData($data['appid'], $data['FromUserName']);
+        $cacheModel->delUserAnswerData($data['appid'], $data['FromUserName']);
+        if ($answerData->answer == $data['Content']) {
+            $codeData = WeChatGiftService::instance()->getGiftCode($data['FromUserName'], $data['ToUserName'], $answerData->gift_key);
+            $giftMessage = WeChatGiftService::instance()->getGiftReply($data['appid'], $answerData->gift_key);
+        } else {
+
+        }
     }
 
     private function question($data)
