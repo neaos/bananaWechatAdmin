@@ -45,6 +45,7 @@ class WeChatGiftService
      */
     public function getGiftCode($fromUserName, $toUserName, $giftKey)
     {
+        $code = '';
         $giftCacheModel = new GiftCacheModel();
         if ($giftCacheModel->getGiftLock($fromUserName, $giftKey)) {
             WeChatApiService::instance()->response(
@@ -77,21 +78,19 @@ class WeChatGiftService
             if ($codeList) {
                 $codeList = array_map('serialize', (array)$codeList);
                 $giftCacheModel->setGiftList($codeList);
-                $giftCacheModel->delGiftListLock();
                 $codeData = unserialize($giftCacheModel->getGiftLock($fromUserName, $giftKey));
-                $codeData->code = trim($codeData->code);
-            } else {
-                $giftCacheModel->delGiftListLock();
-                $codeData = [];
+                $code = trim($codeData->code);
             }
+            $giftCacheModel->delGiftListLock();
         } else {
-            $codeData->code = trim($codeData->code);
+            $code = trim($codeData->code);
         }
-        return $codeData;
+        return $code;
     }
 
     public function getGiftReply($appid, $giftKey)
     {
+        $reply = '';
         $cacheModel = new ReplyGiftCacheModel();
         $replyList = $cacheModel->getReplyGift($appid);
         if (!$replyList) {
@@ -104,5 +103,10 @@ class WeChatGiftService
             }
             $cacheModel->setReplyGift($appid, $replyList);
         }
+        if($replyList = [0]){
+            return $reply;
+        }
+        isset($replyList[$giftKey]) && $reply = $replyList[$giftKey];
+        return $reply;
     }
 }
